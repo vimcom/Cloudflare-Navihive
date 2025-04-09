@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Site, Group } from "../API/http";
 import SiteCard from "./SiteCard";
 import { GroupWithSites } from "../types";
@@ -20,11 +20,12 @@ import {
     horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
 // 引入Material UI组件
-import { Paper, Typography, Button, Box, IconButton, Tooltip } from "@mui/material";
+import { Paper, Typography, Button, Box, IconButton, Tooltip, Snackbar, Alert, Collapse } from "@mui/material";
 import SortIcon from "@mui/icons-material/Sort";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // 更新组件属性接口
 interface GroupCardProps {
@@ -57,6 +58,26 @@ const GroupCard: React.FC<GroupCardProps> = ({
     const [sites, setSites] = useState<Site[]>(group.sites);
     // 添加编辑弹窗的状态
     const [editDialogOpen, setEditDialogOpen] = useState(false);
+    // 添加提示消息状态
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+    // 添加折叠状态
+    const [isCollapsed, setIsCollapsed] = useState(() => {
+        const savedState = localStorage.getItem(`group-${group.id}-collapsed`);
+        return savedState ? JSON.parse(savedState) : false;
+    });
+
+    // 保存折叠状态到本地存储
+    useEffect(() => {
+        if (group.id) {
+            localStorage.setItem(`group-${group.id}-collapsed`, JSON.stringify(isCollapsed));
+        }
+    }, [isCollapsed, group.id]);
+
+    // 处理折叠切换
+    const handleToggleCollapse = () => {
+        setIsCollapsed(!isCollapsed);
+    };
 
     // 配置传感器，支持鼠标、触摸和键盘操作
     const sensors = useSensors(
@@ -221,7 +242,26 @@ const GroupCard: React.FC<GroupCardProps> = ({
         onSaveSiteOrder(group.id!, sites);
     };
 
-    // 正常模式或站点排序模式下渲染完整的分组卡片
+    // 处理排序按钮点击
+    const handleSortClick = () => {
+        if (group.sites.length < 2) {
+            setSnackbarMessage("至少需要2个站点才能进行排序");
+            setSnackbarOpen(true);
+            return;
+        }
+        // 确保分组展开
+        if (isCollapsed) {
+            setIsCollapsed(false);
+        }
+        onStartSiteSort(group.id!);
+    };
+
+    // 关闭提示消息
+    const handleCloseSnackbar = () => {
+        setSnackbarOpen(false);
+    };
+
+    // 修改分组标题区域的渲染
     return (
         <Paper
             elevation={sortMode === "None" ? 2 : 3}
@@ -245,15 +285,48 @@ const GroupCard: React.FC<GroupCardProps> = ({
                 mb={2.5}
                 gap={1}
             >
-                <Typography 
-                    variant='h5' 
-                    component='h2' 
-                    fontWeight='600' 
-                    color='text.primary'
-                    sx={{ mb: { xs: 1, sm: 0 } }}
+                <Box 
+                    sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center',
+                        gap: 1,
+                        cursor: 'pointer',
+                        '&:hover': {
+                            '& .collapse-icon': {
+                                color: 'primary.main',
+                            }
+                        }
+                    }}
+                    onClick={handleToggleCollapse}
                 >
-                    {group.name}
-                </Typography>
+                    <IconButton
+                        size="small"
+                        className="collapse-icon"
+                        sx={{ 
+                            transform: isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)',
+                            transition: 'transform 0.3s ease-in-out',
+                        }}
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
+                    <Typography 
+                        variant='h5' 
+                        component='h2' 
+                        fontWeight='600' 
+                        color='text.primary'
+                        sx={{ mb: { xs: 1, sm: 0 } }}
+                    >
+                        {group.name}
+                        <Typography 
+                            component="span" 
+                            variant="body2" 
+                            color="text.secondary"
+                            sx={{ ml: 1 }}
+                        >
+                            ({group.sites.length})
+                        </Typography>
+                    </Typography>
+                </Box>
 
                 <Box 
                     sx={{ 
@@ -302,7 +375,7 @@ const GroupCard: React.FC<GroupCardProps> = ({
                                     color='primary'
                                     size='small'
                                     startIcon={<SortIcon />}
-                                    onClick={() => onStartSiteSort(group.id!)}
+                                    onClick={handleSortClick}
                                     sx={{ 
                                         minWidth: 'auto',
                                         fontSize: { xs: '0.75rem', sm: '0.875rem' }
@@ -329,8 +402,10 @@ const GroupCard: React.FC<GroupCardProps> = ({
                 </Box>
             </Box>
 
-            {/* 站点卡片区域 */}
-            {renderSites()}
+            {/* 使用 Collapse 组件包装站点卡片区域 */}
+            <Collapse in={!isCollapsed} timeout="auto">
+                {renderSites()}
+            </Collapse>
 
             {/* 编辑分组弹窗 */}
             {onUpdateGroup && onDeleteGroup && (
@@ -342,6 +417,17 @@ const GroupCard: React.FC<GroupCardProps> = ({
                     onDelete={handleDeleteGroup}
                 />
             )}
+
+            {/* 提示消息 */}
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+            >
+                <Alert onClose={handleCloseSnackbar} severity="info" sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </Paper>
     );
 };

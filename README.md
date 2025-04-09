@@ -27,6 +27,30 @@
 
 NaviHive 是一个精美的网站导航管理系统，帮助你整理和管理你收藏的网站链接。支持分组管理、拖拽排序、暗色模式等功能，让你的网站收藏更有条理、更易访问。
 
+## 📑 目录
+
+- [在线演示](#-在线演示)
+- [特性](#-特性)
+- [演示截图](#-演示截图)
+- [技术栈](#️-技术栈)
+- [部署指南](#-部署指南)
+  - [准备工作](#一准备工作)
+  - [一键部署方法](#二一键部署方法推荐小白用户)
+  - [手动部署方法](#三手动部署方法适合开发者)
+  - [初始化与数据库设置](#四初始化与数据库设置)
+- [使用指南](#-使用指南)
+  - [登录系统](#登录系统)
+  - [配置您的导航站](#配置您的导航站)
+  - [使用自定义域名](#使用自定义域名可选)
+- [常见问题解答](#-常见问题解答)
+- [项目结构](#️-项目结构)
+- [贡献](#-贡献)
+- [许可证](#-许可证)
+- [鸣谢](#-鸣谢)
+- [更新日志](#-更新日志)
+- [支持一下作者](#-支持一下作者)
+- [Star History](#star-history)
+
 ## 🌐 在线演示
 
 体验 NaviHive 的功能：[https://navihive.xingqiong.icu/](https://navihive.xingqiong.icu/)
@@ -367,6 +391,13 @@ A: NaviHive 使用两个主要表格：
 -   [Curosr](https://www.cursor.com)
 
 ## 📅 更新日志
+### v1.0.2(2025-04-09)
+- 修复导入数据自定义样式为空报错问题
+- 修复导入数据会产生重复数据问题
+- 修复无卡片排序会无法保存问题
+- 增加导入数据合并卡片功能
+- 增加分组折叠功能
+
 ### v1.0.1 (2025-04-06)
 - 🔄 更新Chrome浏览器标签数据转换工具
 
@@ -387,5 +418,15 @@ A: NaviHive 使用两个主要表格：
 <div align="center">
   <img src="https://img.zhengmi.org/file/1743956440128_4b965550184c06d8164f8077fa42b5d.jpg" alt="微信赞赏码" width="300">
 </div>
+
+
+## Star History
+
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=zqq-nuli/Cloudflare-Navihive&type=Date&theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=zqq-nuli/Cloudflare-Navihive&type=Date" />
+  <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=zqq-nuli/Cloudflare-Navihive&type=Date" />
+</picture>
 
 **NaviHive** - 让网站导航更简单、更美观！
