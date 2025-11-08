@@ -10,15 +10,15 @@
  *   pnpm hash-password mySecurePassword123
  */
 
-import * as bcrypt from 'bcryptjs';
+import { hashSync } from 'bcrypt-edge';
 
 const SALT_ROUNDS = 10;
 
-async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, SALT_ROUNDS);
+function hashPassword(password: string): string {
+  return hashSync(password, SALT_ROUNDS);
 }
 
-async function main() {
+function main() {
   const args = process.argv.slice(2);
 
   if (args.length === 0) {
@@ -35,7 +35,7 @@ async function main() {
 
   try {
     console.log('正在生成密码哈希...');
-    const hash = await hashPassword(password);
+    const hash = hashPassword(password);
     console.log('\n生成的密码哈希:');
     console.log(hash);
     console.log('\n请将此哈希值设置为 AUTH_PASSWORD 环境变量');

@@ -1,6 +1,6 @@
 // src/api/http.ts
 // 不使用外部JWT库，改为内置的crypto API
-import * as bcrypt from 'bcryptjs';
+import { compareSync } from 'bcrypt-edge';
 
 // 定义D1数据库类型
 interface D1Database {
@@ -184,7 +184,7 @@ export class NavigationAPI {
     }
 
     // 使用 bcrypt 验证密码
-    const isPasswordValid = await bcrypt.compare(loginRequest.password, this.passwordHash);
+    const isPasswordValid = compareSync(loginRequest.password, this.passwordHash);
 
     if (isPasswordValid) {
       // 生成JWT令牌，传递记住我参数
