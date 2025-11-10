@@ -275,9 +275,9 @@ function App() {
       setLoginError(null);
 
       // 调用登录接口
-      const success = await api.login(username, password, rememberMe);
+      const loginResponse = await api.login(username, password, rememberMe);
 
-      if (success) {
+      if (loginResponse?.success) {
         // 登录成功，切换到编辑模式
         setIsAuthenticated(true);
         setIsAuthRequired(false);
@@ -288,13 +288,18 @@ function App() {
         await fetchConfigs();
       } else {
         // 登录失败
-        handleError('用户名或密码错误');
+        const message = loginResponse?.message || '用户名或密码错误';
+        handleError(message);
+        setLoginError(message);
         setIsAuthenticated(false);
+        setViewMode('readonly');
+        return;
       }
     } catch (error) {
       console.error('登录失败:', error);
       handleError('登录失败: ' + (error instanceof Error ? error.message : '未知错误'));
       setIsAuthenticated(false);
+      setViewMode('readonly');
     } finally {
       setLoginLoading(false);
     }
