@@ -213,8 +213,8 @@ pnpm deploy
 现在你已经成功部署了 NaviHive，接下来可以：
 
 - 📚 [学习使用教程](./usage) - 了解如何添加分组和网站
-- 🎨 [自定义设置](/zh/features/customization) - 个性化你的导航站
-- 🔐 [配置安全设置](/zh/security/best-practices) - 增强安全性
+- 🎨 [自定义设置](/features/customization) - 个性化你的导航站
+- 🔐 [配置安全设置](/security/best-practices) - 增强安全性
 - 🌐 [绑定自定义域名](./deployment#自定义域名) - 使用自己的域名
 
 ---
@@ -225,7 +225,7 @@ pnpm deploy
 
 1. 检查 Node.js 版本是否满足要求（18+ 或 20+）
 2. 确认 `wrangler.jsonc` 中的 `database_id` 配置正确
-3. 查看 [故障排除](/zh/advanced/troubleshooting) 文档
+3. 查看 [故障排除](/advanced/troubleshooting) 文档
 
 ### 忘记密码怎么办？
 
@@ -241,6 +241,6 @@ pnpm deploy
 
 ## 需要帮助？
 
-- 📖 查看 [完整文档](/zh/guide/)
+- 📖 查看 [完整文档](/guide/)
 - 💬 在 [GitHub Issues](https://github.com/zqq-nuli/Cloudflare-Navihive/issues) 提问
 - 🐛 [报告 Bug](https://github.com/zqq-nuli/Cloudflare-Navihive/issues/new)

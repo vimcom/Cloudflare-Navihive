@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /zh/guide/getting-started
+      link: /guide/getting-started
     - theme: alt
       text: 在线演示
       link: https://navihive.chatbot.cab/
@@ -83,7 +83,7 @@ pnpm deploy
 
 ## 版本信息
 
-当前版本：**v1.1.0** | [更新日志](/zh/guide/migration) | [GitHub Release](https://github.com/zqq-nuli/Cloudflare-Navihive/releases)
+当前版本：**v1.1.0** | [更新日志](/guide/migration) | [GitHub Release](https://github.com/zqq-nuli/Cloudflare-Navihive/releases)
 
 ### v1.1.0 新特性
 

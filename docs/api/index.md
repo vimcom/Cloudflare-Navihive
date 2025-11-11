@@ -279,5 +279,5 @@ Postman 集合文件正在准备中。
 
 如果在使用 API 时遇到问题：
 
-- 查看 [故障排除](/zh/advanced/troubleshooting)
+- 查看 [故障排除](/advanced/troubleshooting)
 - 在 [GitHub Issues](https://github.com/zqq-nuli/Cloudflare-Navihive/issues) 提问
