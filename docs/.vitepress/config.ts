@@ -16,13 +16,11 @@ export default defineConfig({
     root: {
       label: '简体中文',
       lang: 'zh-CN',
-      link: '/zh/',
       ...zhConfig,
     },
     en: {
       label: 'English',
       lang: 'en-US',
-      link: '/en/',
       ...enConfig,
     },
   },
