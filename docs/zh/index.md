@@ -10,14 +10,14 @@ hero:
     alt: NaviHive
   actions:
     - theme: brand
-      text: 了解更多 →
-      link: /introduction
+      text: 快速开始 →
+      link: /zh/guide/getting-started
     - theme: alt
       text: 在线演示
       link: https://navihive.chatbot.cab/
     - theme: alt
-      text: 常见问题
-      link: /guide/faq
+      text: 了解更多
+      link: /zh/introduction
 
 features:
   - icon: 💰
@@ -125,7 +125,7 @@ features:
   <h3 style="margin-top: 0;">🚀 立即部署</h3>
   <p>5 分钟部署你自己的导航站</p>
   <div style="margin-top: 16px;">
-    <a href="/deployment/" style="display: inline-block; padding: 10px 20px; background: var(--vp-c-brand-1); color: white; border-radius: 6px; text-decoration: none; font-weight: 500;">
+    <a href="/zh/guide/getting-started" style="display: inline-block; padding: 10px 20px; background: var(--vp-c-brand-1); color: white; border-radius: 6px; text-decoration: none; font-weight: 500;">
       查看部署指南 →
     </a>
   </div>
@@ -173,7 +173,7 @@ NaviHive 采用现代化的全栈技术：
 </div>
 
 <div style="margin-top: 24px; text-align: center;">
-  <a href="/architecture/" style="color: var(--vp-c-brand-1); text-decoration: none;">
+  <a href="/zh/architecture/" style="color: var(--vp-c-brand-1); text-decoration: none;">
     了解详细架构设计 →
   </a>
 </div>
@@ -186,6 +186,6 @@ NaviHive 采用现代化的全栈技术：
 
 Made with ❤️ by [zqq-nuli](https://github.com/zqq-nuli)
 
-[⭐ GitHub Star](https://github.com/zqq-nuli/Cloudflare-Navihive) · [📝 提交问题](https://github.com/zqq-nuli/Cloudflare-Navihive/issues) · [🤝 参与贡献](https://github.com/zqq-nuli/Cloudflare-Navihive/pulls) · [📖 查看文档](/introduction)
+[⭐ GitHub Star](https://github.com/zqq-nuli/Cloudflare-Navihive) · [📝 提交问题](https://github.com/zqq-nuli/Cloudflare-Navihive/issues) · [🤝 参与贡献](https://github.com/zqq-nuli/Cloudflare-Navihive/pulls) · [📖 查看文档](/zh/guide/)
 
 </div>

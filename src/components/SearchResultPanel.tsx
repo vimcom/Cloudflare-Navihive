@@ -53,7 +53,7 @@ const SearchResultPanel: React.FC<SearchResultPanelProps> = ({
       <>
         {before}
         <Box
-          component="span"
+          component='span'
           sx={{
             backgroundColor: 'primary.main',
             color: 'primary.contrastText',
@@ -120,7 +120,7 @@ const SearchResultPanel: React.FC<SearchResultPanelProps> = ({
                       primary={
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <Typography
-                            variant="body1"
+                            variant='body1'
                             sx={{
                               fontWeight: 500,
                               overflow: 'hidden',
@@ -132,7 +132,7 @@ const SearchResultPanel: React.FC<SearchResultPanelProps> = ({
                           </Typography>
                           <Chip
                             label={result.type === 'site' ? '站点' : '分组'}
-                            size="small"
+                            size='small'
                             color={result.type === 'site' ? 'primary' : 'secondary'}
                             sx={{ height: 20 }}
                           />
@@ -142,7 +142,7 @@ const SearchResultPanel: React.FC<SearchResultPanelProps> = ({
                         <Box sx={{ mt: 0.5 }}>
                           {result.type === 'site' && result.groupName && (
                             <Typography
-                              variant="caption"
+                              variant='caption'
                               sx={{ color: 'text.secondary', display: 'block' }}
                             >
                               分组: {result.groupName}
@@ -150,7 +150,7 @@ const SearchResultPanel: React.FC<SearchResultPanelProps> = ({
                           )}
                           {result.url && (
                             <Typography
-                              variant="caption"
+                              variant='caption'
                               sx={{
                                 color: 'text.secondary',
                                 display: 'block',
@@ -164,7 +164,7 @@ const SearchResultPanel: React.FC<SearchResultPanelProps> = ({
                           )}
                           {result.description && (
                             <Typography
-                              variant="caption"
+                              variant='caption'
                               sx={{
                                 color: 'text.secondary',
                                 display: 'block',
@@ -178,7 +178,7 @@ const SearchResultPanel: React.FC<SearchResultPanelProps> = ({
                           )}
                           {result.notes && (
                             <Typography
-                              variant="caption"
+                              variant='caption'
                               sx={{
                                 color: 'text.secondary',
                                 display: 'block',
@@ -211,7 +211,7 @@ const SearchResultPanel: React.FC<SearchResultPanelProps> = ({
           borderColor: 'divider',
         }}
       >
-        <Typography variant="caption" color="text.secondary">
+        <Typography variant='caption' color='text.secondary'>
           找到 {results.length} 个结果
         </Typography>
       </Box>

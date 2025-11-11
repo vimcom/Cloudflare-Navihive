@@ -185,7 +185,7 @@ export class MockNavigationClient {
 
     // 根据认证状态过滤分组
     if (!this.isAuthenticated) {
-      return mockGroups.filter(g => g.is_public === 1);
+      return mockGroups.filter((g) => g.is_public === 1);
     }
     return [...mockGroups];
   }
@@ -200,21 +200,20 @@ export class MockNavigationClient {
     // 根据认证状态过滤
     if (!this.isAuthenticated) {
       // 访客只能看到公开分组下的公开站点
-      groups = groups.filter(g => g.is_public === 1);
-      const publicGroupIds = groups.map(g => g.id!);
-      sites = sites.filter(site =>
-        site.is_public === 1 && publicGroupIds.includes(site.group_id)
+      groups = groups.filter((g) => g.is_public === 1);
+      const publicGroupIds = groups.map((g) => g.id!);
+      sites = sites.filter(
+        (site) => site.is_public === 1 && publicGroupIds.includes(site.group_id)
       );
     }
 
     // 组合分组和站点
-    return groups.map(group => ({
+    return groups.map((group) => ({
       ...group,
       id: group.id!, // 确保 id 存在
-      sites: sites.filter(site => site.group_id === group.id)
+      sites: sites.filter((site) => site.group_id === group.id),
     }));
   }
-
 
   async getGroup(id: number): Promise<Group | null> {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -267,12 +266,10 @@ export class MockNavigationClient {
     // 根据认证状态过滤站点
     if (!this.isAuthenticated) {
       // 访客只能看到公开分组下的公开站点
-      const publicGroupIds = mockGroups
-        .filter(g => g.is_public === 1)
-        .map(g => g.id);
+      const publicGroupIds = mockGroups.filter((g) => g.is_public === 1).map((g) => g.id);
 
-      sites = sites.filter(site =>
-        site.is_public === 1 && publicGroupIds.includes(site.group_id)
+      sites = sites.filter(
+        (site) => site.is_public === 1 && publicGroupIds.includes(site.group_id)
       );
     }
 

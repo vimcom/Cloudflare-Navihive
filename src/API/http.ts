@@ -406,7 +406,10 @@ export class NavigationAPI {
     )} WHERE id = ? RETURNING id, name, order_num, created_at, updated_at`;
     params.push(id);
 
-    const result = await this.db.prepare(query).bind(...params).all<Group>();
+    const result = await this.db
+      .prepare(query)
+      .bind(...params)
+      .all<Group>();
 
     if (!result.results || result.results.length === 0) {
       return null;
@@ -527,7 +530,6 @@ export class NavigationAPI {
     return Array.from(groupsMap.values());
   }
 
-
   async getSite(id: number): Promise<Site | null> {
     const result = await this.db
       .prepare(
@@ -607,7 +609,10 @@ export class NavigationAPI {
     )} WHERE id = ? RETURNING id, group_id, name, url, icon, description, notes, order_num, created_at, updated_at`;
     params.push(id);
 
-    const result = await this.db.prepare(query).bind(...params).all<Site>();
+    const result = await this.db
+      .prepare(query)
+      .bind(...params)
+      .all<Site>();
 
     if (!result.results || result.results.length === 0) {
       return null;
