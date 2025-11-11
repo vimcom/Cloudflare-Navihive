@@ -224,17 +224,17 @@ const SearchBox: React.FC<SearchBoxProps> = ({ groups, sites, onInternalResultCl
           value={mode}
           exclusive
           onChange={handleModeChange}
-          size="small"
+          size='small'
           sx={{ flexShrink: 0 }}
         >
-          <ToggleButton value="internal" aria-label="站内搜索">
-            <Tooltip title="站内搜索">
-              <LocalIcon fontSize="small" />
+          <ToggleButton value='internal' aria-label='站内搜索'>
+            <Tooltip title='站内搜索'>
+              <LocalIcon fontSize='small' />
             </Tooltip>
           </ToggleButton>
-          <ToggleButton value="external" aria-label="站外搜索">
-            <Tooltip title="站外搜索">
-              <GlobalIcon fontSize="small" />
+          <ToggleButton value='external' aria-label='站外搜索'>
+            <Tooltip title='站外搜索'>
+              <GlobalIcon fontSize='small' />
             </Tooltip>
           </ToggleButton>
         </ToggleButtonGroup>
@@ -257,7 +257,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ groups, sites, onInternalResultCl
           {mode === 'external' && (
             <>
               <Tooltip title={`当前: ${selectedEngine.name}`}>
-                <IconButton size="small" onClick={handleEngineMenuOpen} sx={{ p: 0.5, ml: 0.5 }}>
+                <IconButton size='small' onClick={handleEngineMenuOpen} sx={{ p: 0.5, ml: 0.5 }}>
                   {selectedEngine.icon ? (
                     <Avatar
                       src={selectedEngine.icon}
@@ -265,9 +265,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({ groups, sites, onInternalResultCl
                       alt={selectedEngine.name}
                     />
                   ) : (
-                    <SearchIcon fontSize="small" />
+                    <SearchIcon fontSize='small' />
                   )}
-                  <ExpandMoreIcon fontSize="small" />
+                  <ExpandMoreIcon fontSize='small' />
                 </IconButton>
               </Tooltip>
               <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleEngineMenuClose}>
@@ -285,62 +285,62 @@ const SearchBox: React.FC<SearchBoxProps> = ({ groups, sites, onInternalResultCl
                           alt={engine.name}
                         />
                       ) : (
-                        <SearchIcon fontSize="small" />
+                        <SearchIcon fontSize='small' />
                       )}
                     </ListItemIcon>
                     <ListItemText>{engine.name}</ListItemText>
                     {engine.key === selectedEngine.key && (
-                      <CheckIcon fontSize="small" color="primary" />
+                      <CheckIcon fontSize='small' color='primary' />
                     )}
                   </MenuItem>
                 ))}
               </Menu>
-              <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+              <Divider orientation='vertical' flexItem sx={{ mx: 1 }} />
             </>
           )}
 
-        {/* 搜索输入框 */}
-        <InputBase
-          ref={inputRef}
-          placeholder={
-            mode === 'internal'
-              ? '搜索站点、分组...'
-              : `使用 ${selectedEngine.name} 搜索或输入网址...`
-          }
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
-          sx={{ ml: 1, flex: 1 }}
-          inputProps={{ 'aria-label': '搜索' }}
-          autoComplete="off"
-        />
-
-        {/* 模式标签 */}
-        {query && (
-          <Chip
-            label={mode === 'internal' ? '站内' : '站外'}
-            size="small"
-            color={mode === 'internal' ? 'secondary' : 'primary'}
-            sx={{ mr: 1 }}
+          {/* 搜索输入框 */}
+          <InputBase
+            ref={inputRef}
+            placeholder={
+              mode === 'internal'
+                ? '搜索站点、分组...'
+                : `使用 ${selectedEngine.name} 搜索或输入网址...`
+            }
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+            sx={{ ml: 1, flex: 1 }}
+            inputProps={{ 'aria-label': '搜索' }}
+            autoComplete='off'
           />
-        )}
 
-        {/* 清空按钮 */}
-        {query && (
-          <IconButton size="small" onClick={handleClear} sx={{ mr: 0.5 }}>
-            <CloseIcon fontSize="small" />
+          {/* 模式标签 */}
+          {query && (
+            <Chip
+              label={mode === 'internal' ? '站内' : '站外'}
+              size='small'
+              color={mode === 'internal' ? 'secondary' : 'primary'}
+              sx={{ mr: 1 }}
+            />
+          )}
+
+          {/* 清空按钮 */}
+          {query && (
+            <IconButton size='small' onClick={handleClear} sx={{ mr: 0.5 }}>
+              <CloseIcon fontSize='small' />
+            </IconButton>
+          )}
+
+          {/* 搜索按钮 */}
+          <IconButton
+            size='small'
+            onClick={mode === 'external' ? handleExternalSearch : undefined}
+            disabled={!query.trim()}
+            sx={{ mr: 0.5 }}
+          >
+            <SearchIcon />
           </IconButton>
-        )}
-
-        {/* 搜索按钮 */}
-        <IconButton
-          size="small"
-          onClick={mode === 'external' ? handleExternalSearch : undefined}
-          disabled={!query.trim()}
-          sx={{ mr: 0.5 }}
-        >
-          <SearchIcon />
-        </IconButton>
         </Paper>
       </Box>
 

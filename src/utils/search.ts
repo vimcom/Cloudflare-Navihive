@@ -119,11 +119,7 @@ function searchGroups(groups: Group[], query: string): SearchResultItem[] {
 /**
  * 站内搜索主函数
  */
-export function searchInternal(
-  query: string,
-  groups: Group[],
-  sites: Site[]
-): SearchResultItem[] {
+export function searchInternal(query: string, groups: Group[], sites: Site[]): SearchResultItem[] {
   if (!query || !query.trim()) {
     return [];
   }

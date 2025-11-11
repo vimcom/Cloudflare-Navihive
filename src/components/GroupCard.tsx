@@ -377,7 +377,8 @@ const GroupCard: React.FC<GroupCardProps> = ({
               保存顺序
             </Button>
           ) : (
-            sortMode === 'None' && viewMode === 'edit' && ( // 只在编辑模式显示按钮
+            sortMode === 'None' &&
+            viewMode === 'edit' && ( // 只在编辑模式显示按钮
               <>
                 {onAddSite && group.id && (
                   <Button

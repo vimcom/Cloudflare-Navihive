@@ -788,8 +788,14 @@ export default {
 
                     // 验证更新的站点数据
                     if (data.url !== undefined) {
+                        let url = data.url.trim();
+                        // 如果没有协议,自动添加 https://
+                        if (!/^https?:\/\//i.test(url)) {
+                            url = 'https://' + url;
+                        }
                         try {
-                            new URL(data.url);
+                            new URL(url);
+                            data.url = url; // 使用修正后的URL
                         } catch {
                             return createJsonResponse(
                                 {
@@ -803,8 +809,14 @@ export default {
                     }
 
                     if (data.icon !== undefined && data.icon !== "") {
+                        let iconUrl = data.icon.trim();
+                        // 如果没有协议,自动添加 https://
+                        if (!/^https?:\/\//i.test(iconUrl) && !/^data:/i.test(iconUrl)) {
+                            iconUrl = 'https://' + iconUrl;
+                        }
                         try {
-                            new URL(data.icon);
+                            new URL(iconUrl);
+                            data.icon = iconUrl; // 使用修正后的URL
                         } catch {
                             return createJsonResponse(
                                 {
@@ -1117,10 +1129,15 @@ function validateSite(data: SiteInput): {
     if (!data.url || typeof data.url !== "string") {
         errors.push("URL不能为空且必须是字符串");
     } else {
+        let url = data.url.trim();
+        // 如果没有协议,自动添加 https://
+        if (!/^https?:\/\//i.test(url)) {
+            url = 'https://' + url;
+        }
         try {
             // 验证URL格式
-            new URL(data.url);
-            sanitizedData.url = data.url.trim();
+            new URL(url);
+            sanitizedData.url = url;
         } catch {
             errors.push("无效的URL格式");
         }
@@ -1131,10 +1148,15 @@ function validateSite(data: SiteInput): {
         if (typeof data.icon !== "string") {
             errors.push("图标URL必须是字符串");
         } else if (data.icon) {
+            let iconUrl = data.icon.trim();
+            // 如果没有协议,自动添加 https://
+            if (!/^https?:\/\//i.test(iconUrl) && !/^data:/i.test(iconUrl)) {
+                iconUrl = 'https://' + iconUrl;
+            }
             try {
                 // 验证URL格式
-                new URL(data.icon);
-                sanitizedData.icon = data.icon.trim();
+                new URL(iconUrl);
+                sanitizedData.icon = iconUrl;
             } catch {
                 errors.push("无效的图标URL格式");
             }

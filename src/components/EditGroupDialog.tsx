@@ -98,13 +98,9 @@ const EditGroupDialog: React.FC<EditGroupDialogProps> = ({
             }
             label={
               <Box>
-                <Typography variant='body1'>
-                  {isPublic ? '公开分组' : '私密分组'}
-                </Typography>
+                <Typography variant='body1'>{isPublic ? '公开分组' : '私密分组'}</Typography>
                 <Typography variant='caption' color='text.secondary'>
-                  {isPublic
-                    ? '所有访客都可以看到此分组'
-                    : '只有管理员登录后才能看到此分组'}
+                  {isPublic ? '所有访客都可以看到此分组' : '只有管理员登录后才能看到此分组'}
                 </Typography>
               </Box>
             }

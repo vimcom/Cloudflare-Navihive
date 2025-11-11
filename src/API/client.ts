@@ -138,7 +138,6 @@ export class NavigationClient {
     return this.request('groups-with-sites');
   }
 
-
   async getGroup(id: number): Promise<Group> {
     return this.request(`groups/${id}`);
   }
