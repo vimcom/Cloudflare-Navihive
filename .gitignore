@@ -32,3 +32,7 @@ wrangler.jsonc
 开发调试.md
 UPDATE.md
 NEXT.md
+
+# VitePress 构建产物
+docs/.vitepress/cache
+docs/.vitepress/dist

@@ -12,7 +12,10 @@
         "preview": "pnpm run build && vite preview",
         "deploy": "pnpm run build && wrangler deploy",
         "cf-typegen": "wrangler types",
-        "hash-password": "tsx scripts/hash-password.ts"
+        "hash-password": "tsx scripts/hash-password.ts",
+        "docs:dev": "vitepress dev docs --port 5174",
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs --port 4173"
     },
     "dependencies": {
         "@cfworker/jwt": "^7.0.4",
@@ -53,6 +56,8 @@
         "typescript": "~5.7.2",
         "typescript-eslint": "^8.24.1",
         "vite": "^6.2.0",
+        "vitepress": "^1.6.4",
+        "vue": "^3.5.24",
         "wrangler": "^4.7.2"
     }
 }
