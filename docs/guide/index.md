@@ -29,6 +29,6 @@
 
 如果在使用过程中遇到问题：
 
-- 查看 [故障排除](/zh/advanced/troubleshooting)
+- 查看 [故障排除](/advanced/troubleshooting)
 - 在 [GitHub Issues](https://github.com/zqq-nuli/Cloudflare-Navihive/issues) 提问
-- 参考 [安全最佳实践](/zh/security/best-practices)
+- 参考 [安全最佳实践](/security/best-practices)

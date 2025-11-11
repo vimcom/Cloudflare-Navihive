@@ -6,7 +6,9 @@ import { GroupWithSites } from './types';
 import ThemeToggle from './components/ThemeToggle';
 import GroupCard from './components/GroupCard';
 import LoginForm from './components/LoginForm';
+import SearchBox from './components/SearchBox';
 import { sanitizeCSS, isSecureUrl, extractDomain } from './utils/url';
+import { SearchResultItem } from './utils/search';
 import './App.css';
 import {
   DndContext,
@@ -1143,6 +1145,31 @@ function App() {
             </Stack>
           </Box>
 
+          {/* 搜索框 */}
+          <Box sx={{ mb: 4 }}>
+            <SearchBox
+              groups={groups.map((g) => ({
+                id: g.id,
+                name: g.name,
+                order_num: g.order_num,
+                is_public: g.is_public,
+                created_at: g.created_at,
+                updated_at: g.updated_at,
+              }))}
+              sites={groups.flatMap((g) => g.sites || [])}
+              onInternalResultClick={(result: SearchResultItem) => {
+                // 可选：滚动到对应的元素
+                if (result.type === 'group') {
+                  const groupElement = document.getElementById(`group-${result.id}`);
+                  groupElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (result.type === 'site' && result.groupId) {
+                  const groupElement = document.getElementById(`group-${result.groupId}`);
+                  groupElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            />
+          </Box>
+
           {loading && (
             <Box
               sx={{
@@ -1190,21 +1217,22 @@ function App() {
               ) : (
                 <Stack spacing={5}>
                   {groups.map((group) => (
-                    <GroupCard
-                      key={`group-${group.id}`}
-                      group={group}
-                      sortMode={sortMode === SortMode.None ? 'None' : 'SiteSort'}
-                      currentSortingGroupId={currentSortingGroupId}
-                      viewMode={viewMode}
-                      onUpdate={handleSiteUpdate}
-                      onDelete={handleSiteDelete}
-                      onSaveSiteOrder={handleSaveSiteOrder}
-                      onStartSiteSort={startSiteSort}
-                      onAddSite={handleOpenAddSite}
-                      onUpdateGroup={handleGroupUpdate}
-                      onDeleteGroup={handleGroupDelete}
-                      configs={configs}
-                    />
+                    <Box key={`group-${group.id}`} id={`group-${group.id}`}>
+                      <GroupCard
+                        group={group}
+                        sortMode={sortMode === SortMode.None ? 'None' : 'SiteSort'}
+                        currentSortingGroupId={currentSortingGroupId}
+                        viewMode={viewMode}
+                        onUpdate={handleSiteUpdate}
+                        onDelete={handleSiteDelete}
+                        onSaveSiteOrder={handleSaveSiteOrder}
+                        onStartSiteSort={startSiteSort}
+                        onAddSite={handleOpenAddSite}
+                        onUpdateGroup={handleGroupUpdate}
+                        onDeleteGroup={handleGroupDelete}
+                        configs={configs}
+                      />
+                    </Box>
                   ))}
                 </Stack>
               )}

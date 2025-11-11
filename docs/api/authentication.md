@@ -395,4 +395,4 @@ pnpm deploy
 
 - [分组 API](./groups) - 管理导航分组
 - [站点 API](./sites) - 管理网站链接
-- [安全最佳实践](/zh/security/best-practices) - 提升安全性
+- [安全最佳实践](/security/best-practices) - 提升安全性
