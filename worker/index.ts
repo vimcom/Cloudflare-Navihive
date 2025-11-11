@@ -1014,6 +1014,7 @@ interface LoginInput {
 interface GroupInput {
     name?: string;
     order_num?: number;
+    is_public?: number;
 }
 
 interface SiteInput {
@@ -1024,6 +1025,7 @@ interface SiteInput {
     description?: string;
     notes?: string;
     order_num?: number;
+    is_public?: number;
 }
 
 interface ConfigInput {
@@ -1069,6 +1071,17 @@ function validateGroup(data: GroupInput): {
         errors.push("排序号必须是数字");
     } else {
         sanitizedData.order_num = data.order_num;
+    }
+
+    // 验证 is_public (可选，默认为 1 - 公开)
+    if (data.is_public !== undefined) {
+        if (typeof data.is_public === "number" && (data.is_public === 0 || data.is_public === 1)) {
+            sanitizedData.is_public = data.is_public;
+        } else {
+            errors.push("is_public 必须是 0 (私密) 或 1 (公开)");
+        }
+    } else {
+        sanitizedData.is_public = 1; // 默认公开
     }
 
     return {
@@ -1151,6 +1164,17 @@ function validateSite(data: SiteInput): {
         errors.push("排序号必须是数字");
     } else {
         sanitizedData.order_num = data.order_num;
+    }
+
+    // 验证 is_public (可选，默认为 1 - 公开)
+    if (data.is_public !== undefined) {
+        if (typeof data.is_public === "number" && (data.is_public === 0 || data.is_public === 1)) {
+            sanitizedData.is_public = data.is_public;
+        } else {
+            errors.push("is_public 必须是 0 (私密) 或 1 (公开)");
+        }
+    } else {
+        sanitizedData.is_public = 1; // 默认公开
     }
 
     return {
