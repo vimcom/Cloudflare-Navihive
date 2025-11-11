@@ -218,26 +218,14 @@ const SearchBox: React.FC<SearchBoxProps> = ({ groups, sites, onInternalResultCl
 
   return (
     <Box ref={searchBoxRef} sx={{ position: 'relative', width: '100%', maxWidth: 800, mx: 'auto' }}>
-      <Paper
-        elevation={2}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          p: 0.5,
-          borderRadius: 3,
-          transition: 'all 0.3s',
-          '&:focus-within': {
-            boxShadow: (theme) => `0 0 0 2px ${theme.palette.primary.main}`,
-          },
-        }}
-      >
-        {/* 搜索模式切换 */}
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        {/* 搜索模式切换 - 移到外侧 */}
         <ToggleButtonGroup
           value={mode}
           exclusive
           onChange={handleModeChange}
           size="small"
-          sx={{ ml: 1 }}
+          sx={{ flexShrink: 0 }}
         >
           <ToggleButton value="internal" aria-label="站内搜索">
             <Tooltip title="站内搜索">
@@ -251,51 +239,65 @@ const SearchBox: React.FC<SearchBoxProps> = ({ groups, sites, onInternalResultCl
           </ToggleButton>
         </ToggleButtonGroup>
 
-        {/* 搜索引擎选择器（仅站外模式） */}
-        {mode === 'external' && (
-          <>
-            <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
-            <Tooltip title={`当前: ${selectedEngine.name}`}>
-              <IconButton size="small" onClick={handleEngineMenuOpen} sx={{ p: 0.5 }}>
-                {selectedEngine.icon ? (
-                  <Avatar
-                    src={selectedEngine.icon}
-                    sx={{ width: 24, height: 24 }}
-                    alt={selectedEngine.name}
-                  />
-                ) : (
-                  <SearchIcon fontSize="small" />
-                )}
-                <ExpandMoreIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleEngineMenuClose}>
-              {SEARCH_ENGINES.map((engine) => (
-                <MenuItem
-                  key={engine.key}
-                  onClick={() => handleEngineSelect(engine)}
-                  selected={engine.key === selectedEngine.key}
-                >
-                  <ListItemIcon>
-                    {engine.icon ? (
-                      <Avatar
-                        src={engine.icon}
-                        sx={{ width: 24, height: 24 }}
-                        alt={engine.name}
-                      />
-                    ) : (
-                      <SearchIcon fontSize="small" />
-                    )}
-                  </ListItemIcon>
-                  <ListItemText>{engine.name}</ListItemText>
-                  {engine.key === selectedEngine.key && (
-                    <CheckIcon fontSize="small" color="primary" />
+        <Paper
+          elevation={2}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            p: 0.5,
+            borderRadius: 3,
+            transition: 'all 0.3s',
+            flex: 1,
+            '&:focus-within': {
+              boxShadow: (theme) => `0 0 0 2px ${theme.palette.primary.main}`,
+            },
+          }}
+        >
+          {/* 搜索引擎选择器（仅站外模式） */}
+          {mode === 'external' && (
+            <>
+              <Tooltip title={`当前: ${selectedEngine.name}`}>
+                <IconButton size="small" onClick={handleEngineMenuOpen} sx={{ p: 0.5, ml: 0.5 }}>
+                  {selectedEngine.icon ? (
+                    <Avatar
+                      src={selectedEngine.icon}
+                      sx={{ width: 24, height: 24 }}
+                      alt={selectedEngine.name}
+                    />
+                  ) : (
+                    <SearchIcon fontSize="small" />
                   )}
-                </MenuItem>
-              ))}
-            </Menu>
-          </>
-        )}
+                  <ExpandMoreIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleEngineMenuClose}>
+                {SEARCH_ENGINES.map((engine) => (
+                  <MenuItem
+                    key={engine.key}
+                    onClick={() => handleEngineSelect(engine)}
+                    selected={engine.key === selectedEngine.key}
+                  >
+                    <ListItemIcon>
+                      {engine.icon ? (
+                        <Avatar
+                          src={engine.icon}
+                          sx={{ width: 24, height: 24 }}
+                          alt={engine.name}
+                        />
+                      ) : (
+                        <SearchIcon fontSize="small" />
+                      )}
+                    </ListItemIcon>
+                    <ListItemText>{engine.name}</ListItemText>
+                    {engine.key === selectedEngine.key && (
+                      <CheckIcon fontSize="small" color="primary" />
+                    )}
+                  </MenuItem>
+                ))}
+              </Menu>
+              <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+            </>
+          )}
 
         {/* 搜索输入框 */}
         <InputBase
@@ -339,7 +341,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({ groups, sites, onInternalResultCl
         >
           <SearchIcon />
         </IconButton>
-      </Paper>
+        </Paper>
+      </Box>
 
       {/* 站内搜索结果面板 */}
       {mode === 'internal' && (
