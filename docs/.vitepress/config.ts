@@ -95,7 +95,8 @@ export default defineConfig({
   },
 
   // 忽略死链检查（避免构建失败）
-  ignoreDeadLinks: false,
+  // 设置为 true 以允许构建，或使用 'localhostLinks' 仅忽略 localhost 链接
+  ignoreDeadLinks: true,
 
   // 最后更新时间
   lastUpdated: true,

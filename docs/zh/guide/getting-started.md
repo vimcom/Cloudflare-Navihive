@@ -40,7 +40,8 @@ NaviHive 提供两种部署方式：
 2. 点击右上角的 **Fork** 按钮
 3. 等待 Fork 完成
 
-![Fork 项目示意图](/images/screenshots/fork-project.png)
+<!-- 图片占位符：Fork 项目示意图 -->
+<!-- ![Fork 项目示意图](/images/screenshots/fork-project.png) -->
 
 ### 第三步：一键部署
 
