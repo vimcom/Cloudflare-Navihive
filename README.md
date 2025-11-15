@@ -31,6 +31,8 @@
 
 </div>
 
+> 部署过程中遇到问题，暂时可参阅 V1.1.0版本[部署教程](https://github.com/zqq-nuli/Cloudflare-Navihive/tree/v1.1.0)暂时我可能没有那么多时间来修正文档的问题，实在抱歉。
+
 ## 🎯 快速开始
 
 ### 在线演示
